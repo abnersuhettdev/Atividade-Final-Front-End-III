@@ -7,7 +7,11 @@ const Home: React.FC = () => {
 
 	return (
 		<div>
-			<Button variant="contained" onClick={() => setTitle('Olá Mundo')}>
+			<Button
+				variant="contained"
+				color="secondary"
+				onClick={() => setTitle('Olá Mundo')}
+			>
 				Testing
 			</Button>
 			<Typography variant="h1">{title}</Typography>
