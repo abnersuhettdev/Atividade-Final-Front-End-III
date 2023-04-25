@@ -1,21 +1,15 @@
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
-import React, { useState } from 'react';
+import React from 'react';
 
 const Home: React.FC = () => {
-	const [title, setTitle] = useState('');
-
 	return (
-		<div>
-			<Button
-				variant="contained"
-				color="secondary"
-				onClick={() => setTitle('Olá Mundo')}
-			>
+		<>
+			<Button variant="contained" color="secondary">
 				Testing
 			</Button>
-			<Typography variant="h1">{title}</Typography>
-		</div>
+			<Typography variant="h1">Hello</Typography>
+		</>
 	);
 };
 

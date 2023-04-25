@@ -1,13 +1,11 @@
-import { ThemeProvider } from '@mui/material';
-
 import AppRoutes from './routes/AppRoutes';
-import { DarkTheme } from './shared/themes';
+import { AppThemeProvider } from './shared/contexts/ThemeContexts';
 
 function App() {
 	return (
-		<ThemeProvider theme={DarkTheme}>
+		<AppThemeProvider>
 			<AppRoutes />
-		</ThemeProvider>
+		</AppThemeProvider>
 	);
 }
 
