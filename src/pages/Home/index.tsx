@@ -1,14 +1,25 @@
-import { Typography } from '@mui/material';
-import Button from '@mui/material/Button';
+import { Grid } from '@mui/material';
 import React from 'react';
+
+import { ButtonWithModal } from '../../shared/components/ButtonWithModal';
+import { Header } from '../../shared/components/Header';
+import { HomeContainer } from '../../shared/components/HomeContainer';
 
 const Home: React.FC = () => {
 	return (
 		<>
-			<Button variant="contained" color="secondary">
-				Testing
-			</Button>
-			<Typography variant="h1">Hello</Typography>
+			<Header />
+			<HomeContainer />
+			<Grid
+				item
+				gap={2}
+				sx={{
+					display: 'flex',
+				}}
+			>
+				<ButtonWithModal text="cadastrar"></ButtonWithModal>
+				<ButtonWithModal text="cadastrar"></ButtonWithModal>
+			</Grid>
 		</>
 	);
 };

@@ -6,13 +6,13 @@ export const DarkTheme = createTheme({
 			main: '#00132D',
 			dark: '#001E45',
 			light: '#002657',
-			contrastText: '#EDEDED',
+			contrastText: '#FFFF',
 		},
 		secondary: {
 			main: '#26B29D',
 			dark: '#13594E',
 			light: '#26B29D',
-			contrastText: '#0A2D27',
+			contrastText: '#FFFF',
 		},
 		background: {
 			default: '#11151C',
