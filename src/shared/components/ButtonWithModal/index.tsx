@@ -1,9 +1,5 @@
-import { Box, Button, Modal, Typography } from '@mui/material';
+import { Box, Button, Grid, Modal, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-
-interface IButtonProps {
-	text: string;
-}
 
 const style = {
 	position: 'absolute' as const,
@@ -17,7 +13,26 @@ const style = {
 	p: 4,
 };
 
-export const ButtonWithModal: React.FC<IButtonProps> = ({ text }) => {
+interface IButtonAndFormProps {
+	text: string;
+	tituloForm: string;
+	submitText: string;
+
+	mostraBotaoNome?: boolean;
+	mostraBotaoEmail?: boolean;
+	mostraBotaoSenha?: boolean;
+	mostraBotaoConfirmaSenha?: boolean;
+}
+
+export const ButtonWithModal: React.FC<IButtonAndFormProps> = ({
+	text,
+	tituloForm,
+	submitText,
+	mostraBotaoNome,
+	mostraBotaoEmail,
+	mostraBotaoSenha,
+	mostraBotaoConfirmaSenha,
+}) => {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -35,6 +50,7 @@ export const ButtonWithModal: React.FC<IButtonProps> = ({ text }) => {
 						color: 'white',
 						bgcolor: 'primary.main',
 						borderRadius: '0',
+						padding: '10px',
 					}}
 					onClick={handleOpen}
 				>
@@ -47,17 +63,63 @@ export const ButtonWithModal: React.FC<IButtonProps> = ({ text }) => {
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
-						<Typography
-							id="modal-modal-title"
-							variant="h6"
-							component="h2"
+						<Grid
+							container
+							alignItems={'center'}
+							justifyContent={'center'}
+							textAlign={'center'}
+							flexDirection={'column'}
+							gap={1}
 						>
-							Text in a modal
-						</Typography>
-						<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-							Duis mollis, est non commodo luctus, nisi erat
-							porttitor ligula.
-						</Typography>
+							<Typography
+								id="modal-modal-title"
+								variant="h5"
+								component="h2"
+							>
+								{tituloForm}
+							</Typography>
+
+							<Grid
+								item
+								sx={{
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center',
+									justifyContent: 'center',
+								}}
+								gap={3}
+							>
+								{mostraBotaoNome && (
+									<TextField
+										id="name"
+										label="Nome"
+										variant="outlined"
+									/>
+								)}
+								{mostraBotaoEmail && (
+									<TextField
+										id="email"
+										label="Email"
+										variant="outlined"
+									/>
+								)}
+								{mostraBotaoSenha && (
+									<TextField
+										id="password"
+										label="Senha"
+										type="password"
+									/>
+								)}
+								{mostraBotaoConfirmaSenha && (
+									<TextField
+										id="confirm-password"
+										label="Confirme sua senha"
+										type="password"
+									/>
+								)}
+								<Button variant="outlined">{submitText}</Button>
+							</Grid>
+						</Grid>
 					</Box>
 				</Modal>
 			</Box>

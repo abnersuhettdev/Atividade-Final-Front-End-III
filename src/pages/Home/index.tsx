@@ -17,8 +17,22 @@ const Home: React.FC = () => {
 					display: 'flex',
 				}}
 			>
-				<ButtonWithModal text="cadastrar"></ButtonWithModal>
-				<ButtonWithModal text="cadastrar"></ButtonWithModal>
+				<ButtonWithModal
+					tituloForm="Cadastrar"
+					text="cadastrar"
+					submitText="Cadastrar"
+					mostraBotaoNome
+					mostraBotaoEmail
+					mostraBotaoSenha
+					mostraBotaoConfirmaSenha
+				></ButtonWithModal>
+				<ButtonWithModal
+					tituloForm="Fazer Login"
+					text="Login"
+					submitText="Login"
+					mostraBotaoEmail
+					mostraBotaoSenha
+				></ButtonWithModal>
 			</Grid>
 		</>
 	);
