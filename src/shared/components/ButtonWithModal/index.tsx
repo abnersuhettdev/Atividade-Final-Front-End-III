@@ -1,5 +1,7 @@
-import { Box, Button, Grid, Modal, TextField, Typography } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 import { useState } from 'react';
+
+import { Form } from '../Form';
 
 const style = {
 	position: 'absolute' as const,
@@ -63,63 +65,14 @@ export const ButtonWithModal: React.FC<IButtonAndFormProps> = ({
 					aria-describedby="modal-modal-description"
 				>
 					<Box sx={style}>
-						<Grid
-							container
-							alignItems={'center'}
-							justifyContent={'center'}
-							textAlign={'center'}
-							flexDirection={'column'}
-							gap={1}
-						>
-							<Typography
-								id="modal-modal-title"
-								variant="h5"
-								component="h2"
-							>
-								{tituloForm}
-							</Typography>
-
-							<Grid
-								item
-								sx={{
-									display: 'flex',
-									flexDirection: 'column',
-									alignItems: 'center',
-									justifyContent: 'center',
-								}}
-								gap={3}
-							>
-								{mostraBotaoNome && (
-									<TextField
-										id="name"
-										label="Nome"
-										variant="outlined"
-									/>
-								)}
-								{mostraBotaoEmail && (
-									<TextField
-										id="email"
-										label="Email"
-										variant="outlined"
-									/>
-								)}
-								{mostraBotaoSenha && (
-									<TextField
-										id="password"
-										label="Senha"
-										type="password"
-									/>
-								)}
-								{mostraBotaoConfirmaSenha && (
-									<TextField
-										id="confirm-password"
-										label="Confirme sua senha"
-										type="password"
-									/>
-								)}
-								<Button variant="outlined">{submitText}</Button>
-							</Grid>
-						</Grid>
+						<Form
+							tituloForm={tituloForm}
+							submitText={submitText}
+							mostraBotaoNome={mostraBotaoNome}
+							mostraBotaoEmail={mostraBotaoEmail}
+							mostraBotaoSenha={mostraBotaoSenha}
+							mostraBotaoConfirmaSenha={mostraBotaoConfirmaSenha}
+						/>
 					</Box>
 				</Modal>
 			</Box>
