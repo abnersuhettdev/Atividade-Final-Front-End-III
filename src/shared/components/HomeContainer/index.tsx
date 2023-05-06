@@ -3,7 +3,6 @@ import { Grid, Typography } from '@mui/material';
 export const HomeContainer = () => {
 	return (
 		<Grid
-			xs={12}
 			height={'80vh'}
 			flexDirection={'column'}
 			justifyContent={'center'}
