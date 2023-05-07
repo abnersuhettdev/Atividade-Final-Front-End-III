@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Button, Grid, TextField } from '@mui/material';
+import { Alert, Button, Grid, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 
-import { Contexto } from '../../../configs/types/Contexto';
+import { Contexto, IUser } from '../../../configs/types/Contexto';
 
 const style = {
 	position: 'absolute' as const,
@@ -38,11 +38,63 @@ export const MyModal: React.FC<IModalProps> = ({
 	function handleSubmit() {
 		switch (contexto) {
 			case 'cadastro':
-				console.log(nome, email, senha, confirmaSenha);
+				if (!(nome && email && senha && confirmaSenha)) {
+					console.log('Cadastro inválido');
+					return;
+				}
 				break;
 			case 'login':
 				console.log(email, senha);
 				break;
+		}
+
+		const user: IUser = {
+			nome,
+			email,
+			senha,
+		};
+
+		console.log(user);
+	}
+
+	function handleInputs(input: HTMLTextAreaElement | HTMLInputElement) {
+		const tipoInput = input.name;
+		const valorInput = input.value;
+
+		switch (tipoInput) {
+			case 'nome':
+				if (valorInput.trim().length < 3) {
+					console.log('Nome inválido, insira no minimo 3 caracteres');
+					return;
+				}
+				console.log('nome ok');
+				setNome(valorInput);
+				break;
+			case 'email':
+				if (!valorInput.includes('com' && '@')) {
+					console.log('Email invalido');
+					return;
+				}
+				setEmail(valorInput);
+				console.log('email ok');
+				break;
+			case 'password':
+				if (valorInput.trim().length < 5) {
+					console.log('Senha Inválida');
+					return;
+				}
+				console.log('senha Ok');
+				setSenha(valorInput);
+				break;
+			case 'password2':
+				if (valorInput !== senha) {
+					console.log('Senha inválida');
+					return;
+				}
+				console.log('Senha confirmada');
+				setConfirmaSenha(valorInput);
+				break;
+			default:
 		}
 	}
 
@@ -55,6 +107,9 @@ export const MyModal: React.FC<IModalProps> = ({
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
+					<Alert severity="warning">
+						This is a warning alert — check it out!
+					</Alert>
 					<Grid
 						display={'flex'}
 						flexDirection={'column'}
@@ -84,28 +139,30 @@ export const MyModal: React.FC<IModalProps> = ({
 							>
 								<TextField
 									placeholder="Nome"
-									onChange={(ev) => setNome(ev.target.value)}
+									onChange={(ev) => handleInputs(ev.target)}
+									name="nome"
 									required
 								/>
 								<TextField
 									placeholder="Email"
 									type="text"
 									required
-									onChange={(ev) => setEmail(ev.target.value)}
+									name="email"
+									onChange={(ev) => handleInputs(ev.target)}
 								/>
 								<TextField
 									placeholder="Senha"
 									type="password"
-									onChange={(ev) => setSenha(ev.target.value)}
+									name="password"
+									onChange={(ev) => handleInputs(ev.target)}
 									required
 								/>
 								<TextField
 									placeholder="Confirme sua senha"
 									required
 									type="password"
-									onChange={(ev) =>
-										setConfirmaSenha(ev.target.value)
-									}
+									name="password2"
+									onChange={(ev) => handleInputs(ev.target)}
 								/>
 							</Grid>
 						)}
